@@ -7,12 +7,51 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
+    
+    var MyTimer = Timer()
+    var TimerDisplayed = 0
+    
+    
+    @IBOutlet weak var LabelView: UILabel!
+    
+    
+    
+    @IBAction func StartBTN(_ sender: Any) {
+        
+        MyTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Action), userInfo: nil, repeats: true)
+    }
+    
+    
+    @IBAction func PauseBTN(_ sender: Any) {
+        MyTimer.invalidate()
+        
+    }
+    
+    
+    
+    @IBAction func ResetBTN(_ sender: Any) {
+        MyTimer.invalidate()
+        TimerDisplayed = 0
+        LabelView.text = "0"
+        
+    }
+    
+    
+    @objc func Action(){
+    TimerDisplayed += 1
+        LabelView.text = String(TimerDisplayed)
+        
+        
+    }
+    
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
     }
 
 
